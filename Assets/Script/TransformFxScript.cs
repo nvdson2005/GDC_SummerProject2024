@@ -5,13 +5,13 @@ using UnityEngine;
 public class TransformFxScript : MonoBehaviour
 {
     Animator vpanim;
-    float time;
+    PlayerInfoHandler playerinfohandler;
     bool istransformed;
     // Start is called before the first frame update
     void Start()
     {
         vpanim = GetComponent<Animator>();
-        time = 0;
+        playerinfohandler = GetComponentInParent<PlayerScript>().playerinfohandler;
         istransformed = false;
     }
 
@@ -25,10 +25,8 @@ public class TransformFxScript : MonoBehaviour
         }
         else vpanim.SetBool("BienHinh",false);
         if(istransformed){
-            time += Time.deltaTime;
-            if(time >= 10f){
+            if(playerinfohandler.getMana() <=0 || Input.GetKeyDown(KeyCode.E)){
                 istransformed = false;
-                time = 0;
                 vpanim.SetBool("BienHinh", true);
             }
         }

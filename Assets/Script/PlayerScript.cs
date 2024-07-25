@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class PlayerScript : MonoBehaviour
 {
-
+    [SerializeField] int KeyCount;
     [SerializeField] int Hp;
     [SerializeField] int Mana;
     public PlayerInfoHandler playerinfohandler;
@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        KeyCount = 0;
         time = 0;
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -58,18 +58,18 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)){
             Debug.Log(" Q Pressed in Player");
             anim.enabled = false;
-            //Tim mot animation bien hinh roi bo vo truoc phan load Sprite.
             spriteRenderer.sprite = Resources.Load<Sprite>("crate_1");
             istransformed = true;
             this.gameObject.tag = "FakeChest";
         }
+        //Reduce mana when using skill
         if(istransformed){
             IgnoreEnemy();
             time += Time.deltaTime;
-            Debug.Log(time);
+            //Debug.Log(time);
             if(time >= 1){
-                Mana -= 2;
-                playerinfohandler.UpdateManaWhenUseSkill(2);
+                Mana -= 4;
+                playerinfohandler.UpdateManaWhenUseSkill(4);
                 time = 0;
             }
             if(Mana <= 0 || (Input.GetKeyDown(KeyCode.E) && istransformed)){
@@ -84,6 +84,12 @@ public class PlayerScript : MonoBehaviour
     }
     //TakeDamage is used to call the hit force in the Enemy Script
     public void TakeDamage(GameObject enemy){
+        if(enemy.gameObject.CompareTag("Traps")){
+            playerinfohandler.UpdateHPWhenHit(Hp);
+            Hp -= Hp;
+            Dead();
+            return;
+        }
         if(enemy.transform.localScale.x == 1){
                 //playerRigid.AddForce(Vector2.one*_hitForce, ForceMode2D.Impulse);
                 playerRigid.velocity = new Vector2 (_hitForce, _hitForce);
@@ -93,6 +99,7 @@ public class PlayerScript : MonoBehaviour
             }
         // playerRigid.velocity = new Vector2 (_hitForce, _hitForce);
         Hp -= 10;
+        
         Debug.Log("Hit by " + enemy.name);
         Debug.Log("hp " + Hp);
         playerinfohandler.UpdateHPWhenHit(10);
@@ -106,6 +113,14 @@ public class PlayerScript : MonoBehaviour
     IEnumerator Reset(){
         yield return new WaitForSeconds(1f);
         playerRigid.velocity = Vector2.zero;
+    }
+    void OnTriggerEnter2D(Collider2D other){
+        //Collect Key
+        if(other.gameObject.CompareTag("Key")){
+            Destroy(other.gameObject);
+            KeyCount++;
+            playerinfohandler.AddKey();
+        }      
     }
     void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.layer == 6){
@@ -122,6 +137,11 @@ public class PlayerScript : MonoBehaviour
             
             //Decrease HP
         }
+        ////
+        //Collect Keys
+        
+
+        ////
         // if(istransformed){
         //     if(other.gameObject.CompareTag("Enemy")){
         //         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.collider, true);
@@ -131,6 +151,7 @@ public class PlayerScript : MonoBehaviour
         //     Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.collider, false);
         //     Debug.Log("Collision Ignored: " + Physics2D.GetIgnoreCollision(GetComponent<Collider2D>(), other.collider));
         // }
+        
     }
     private void IgnoreEnemy(){
         Physics2D.IgnoreLayerCollision(7,8, true);
@@ -139,7 +160,9 @@ public class PlayerScript : MonoBehaviour
         Physics2D.IgnoreLayerCollision(7,8, false);
     }
     private void Dead(){
+        if(anim.enabled == false) anim.enabled = true;
         anim.SetTrigger("isDead");
+        Debug.Log("Player dies");
         GetComponent<PlayerScript>().enabled = false;
     }
 }

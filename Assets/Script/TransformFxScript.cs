@@ -18,7 +18,7 @@ public class TransformFxScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(Input.GetKeyDown(KeyCode.Q) && !istransformed){
             vpanim.SetBool("BienHinh", true);
             Debug.Log("Q Pressed in TransformFx");
             istransformed = true;

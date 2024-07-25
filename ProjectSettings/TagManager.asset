@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FakeChest
   - Enemy
+  - Traps
+  - Key
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Wall and Ground
   - Player
   - Enemy
-  - 
+  - Trap
   - 
   - 
   - 

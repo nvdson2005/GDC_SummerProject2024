@@ -125,7 +125,7 @@ public class WolfScript : MonoBehaviour
     void Chase(){
         //Animation and Physical Moving to player
         
-        Debug.Log(Mathf.Abs(transform.position.y - player.transform.position.y));
+        //Debug.Log(Mathf.Abs(transform.position.y - player.transform.position.y));
         _rigid.velocity = new Vector3(transform.localScale.x * _movespeed * 3f, 0f, 0f);
         // if(!(Mathf.Abs(transform.position.y - player.transform.position.y) <= 2f)){
         //     _rigid.AddForce(new Vector2(transform.localScale.x,3) * _jumpforce, ForceMode2D.Impulse);

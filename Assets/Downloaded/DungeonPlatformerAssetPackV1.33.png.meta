@@ -621,6 +621,426 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_25
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 1681
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2edf08955ba5c48820cbc8f551bceb
+      internalID: 1413654066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_26
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 1682
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6faa3d6e665845e4eabb92d42fda31db
+      internalID: -83465876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_27
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 1683
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a8fcffeb38faf48a2a4ecba5da1d6e
+      internalID: -2096220293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_28
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 1682
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eebdcee277e566e4f93ea455b30e268f
+      internalID: -1585350031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_29
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 1681
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abd5ecee119b1e499f4f4e57774bb4d
+      internalID: 456582316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_30
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1681
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7453641037d38654387f748db9173ce4
+      internalID: 391776084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_31
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 1682
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6ec95f1f373c249853b9124916e013
+      internalID: 279668209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_32
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 1683
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49ee9f3e5e1bb84da63bb54326f6d5a
+      internalID: 2056646541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_33
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1682
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a68e9a99e44fcf341a07950de886b4b1
+      internalID: -2100533257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_34
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 1681
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f63926426e3fa418601597702cfbb5
+      internalID: 658337713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_35
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 1697
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6d15433e03843418ca3b95288da354
+      internalID: 1890774707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_36
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1698
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd961cb6df255e45bce2eb7c422d66b
+      internalID: -754667447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_37
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 1699
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8f7a97a2778134f86afc9aceb62bde
+      internalID: 1472137010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_38
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 1698
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1851d2d520d3c4a8c258718e40898a
+      internalID: -505145826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_39
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1697
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d68f4b9b9451c74fb618c86e699a5e9
+      internalID: 1139711755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_40
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 1697
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72cee251d3bd94743840f301b387eba0
+      internalID: -1798772974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_41
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 1698
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6165741f6701b2b4f957c06ec9c0791b
+      internalID: -278983177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_42
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 1699
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13e3f4f96d5b1b742b98ef002758ac18
+      internalID: -659105141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_43
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 1698
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8a50f3f7c756d04889eecc878026c47
+      internalID: -1236265358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DungeonPlatformerAssetPackV1.33_44
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 1697
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f19db784be063946bd2c50b928d3143
+      internalID: 778655027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -650,8 +1070,28 @@ TextureImporter:
       DungeonPlatformerAssetPackV1.33_22: 595206454
       DungeonPlatformerAssetPackV1.33_23: 1271890219
       DungeonPlatformerAssetPackV1.33_24: 1779720702
+      DungeonPlatformerAssetPackV1.33_25: 1413654066
+      DungeonPlatformerAssetPackV1.33_26: -83465876
+      DungeonPlatformerAssetPackV1.33_27: -2096220293
+      DungeonPlatformerAssetPackV1.33_28: -1585350031
+      DungeonPlatformerAssetPackV1.33_29: 456582316
       DungeonPlatformerAssetPackV1.33_3: 1417732528
+      DungeonPlatformerAssetPackV1.33_30: 391776084
+      DungeonPlatformerAssetPackV1.33_31: 279668209
+      DungeonPlatformerAssetPackV1.33_32: 2056646541
+      DungeonPlatformerAssetPackV1.33_33: -2100533257
+      DungeonPlatformerAssetPackV1.33_34: 658337713
+      DungeonPlatformerAssetPackV1.33_35: 1890774707
+      DungeonPlatformerAssetPackV1.33_36: -754667447
+      DungeonPlatformerAssetPackV1.33_37: 1472137010
+      DungeonPlatformerAssetPackV1.33_38: -505145826
+      DungeonPlatformerAssetPackV1.33_39: 1139711755
       DungeonPlatformerAssetPackV1.33_4: 1943178063
+      DungeonPlatformerAssetPackV1.33_40: -1798772974
+      DungeonPlatformerAssetPackV1.33_41: -278983177
+      DungeonPlatformerAssetPackV1.33_42: -659105141
+      DungeonPlatformerAssetPackV1.33_43: -1236265358
+      DungeonPlatformerAssetPackV1.33_44: 778655027
       DungeonPlatformerAssetPackV1.33_5: 1315930628
       DungeonPlatformerAssetPackV1.33_6: 518147753
       DungeonPlatformerAssetPackV1.33_7: 1941992391

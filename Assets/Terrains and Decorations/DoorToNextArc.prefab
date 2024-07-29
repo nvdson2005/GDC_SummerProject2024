@@ -143,4 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d80aaf42ee016c408a10a9c9d31b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerr: {fileID: 0}
+  playerr: {fileID: 8376277258136994248, guid: bd5b430de16b35841a1ee7a4c9b08d3d, type: 3}
+  levelloader: {fileID: 0}

@@ -11,11 +11,12 @@ public class OrcScript : MonoBehaviour
     [SerializeField] LayerMask layerr;
     float _count;
     Transform _basetransform;
-    [SerializeField] GameObject player;
+    [HideInInspector] GameObject player;
     Animator _anim;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         WeaponHit = GetComponentInChildren<CircleCollider2D>();
         _anim = GetComponent<Animator>();
         _basetransform = GetComponent<Transform>();

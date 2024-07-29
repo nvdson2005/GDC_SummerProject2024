@@ -8,10 +8,12 @@ using UnityEngine.UIElements;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] int KeyCount;
+    GameObject startpoint;
+    [HideInInspector]
+    public PlayerInfoHandler playerinfohandler;
+    public int KeyCount{get; private set;}
     [SerializeField] int Hp;
     [SerializeField] int Mana;
-    public PlayerInfoHandler playerinfohandler;
     public float time {get; private set;}
     [SerializeField] int _jumpforce;
     [SerializeField] int _runforce;
@@ -24,6 +26,10 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startpoint = GameObject.Find("PlayerStartPoint");
+        transform.position = startpoint.transform.position;
+        playerinfohandler = FindObjectOfType<PlayerInfoHandler>().GetComponent<PlayerInfoHandler>();
+        DontDestroyOnLoad(this);
         KeyCount = 0;
         time = 0;
         anim = GetComponent<Animator>();
@@ -54,8 +60,10 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("isJump", true);
             playerRigid.AddForce(new Vector2(0, _jumpforce), ForceMode2D.Impulse);
             isGrounded = false;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         if(Input.GetKeyDown(KeyCode.Q)){
+            FindObjectOfType<AudioManager>().Play("Transform");
             Debug.Log(" Q Pressed in Player");
             anim.enabled = false;
             spriteRenderer.sprite = Resources.Load<Sprite>("crate_1");
@@ -73,6 +81,7 @@ public class PlayerScript : MonoBehaviour
                 time = 0;
             }
             if(Mana <= 0 || (Input.GetKeyDown(KeyCode.E) && istransformed)){
+                FindObjectOfType<AudioManager>().Play("Transform");
                 istransformed = false;
                 time = 0;
                 anim.enabled = true;
@@ -81,13 +90,38 @@ public class PlayerScript : MonoBehaviour
                 StopIgnoreEnemy();
             }
         }
+        if(Input.GetKeyDown(KeyCode.R)){
+            SelectTransformObject();
+        }
+    }
+    void SelectTransformObject(){
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("FakeChest");
+        foreach(GameObject game in gameObjects){
+            Debug.Log(game.name);
+        }
+    }
+    //Play Walk Sound Effect (In Animation Event)
+    public void PlayWalkSfx(){
+        if(isGrounded){
+                if(!FindObjectOfType<AudioManager>().IsPlaying("Walk")){
+                    FindObjectOfType<AudioManager>().Play("Walk");
+                }else
+                FindObjectOfType<AudioManager>().Stop("Walk");
+        }
+        else FindObjectOfType<AudioManager>().Stop("Walk");
     }
     //TakeDamage is used to call the hit force in the Enemy Script
     public void TakeDamage(GameObject enemy){
+        FindObjectOfType<AudioManager>().Play("Hurt");
         if(enemy.gameObject.CompareTag("Traps")){
             playerinfohandler.UpdateHPWhenHit(Hp);
             Hp -= Hp;
             Dead();
+            return;
+        }
+        if(enemy.gameObject.CompareTag("TrapsNotDead")){
+            Hp -= 30;
+            playerinfohandler.UpdateHPWhenHit(30);
             return;
         }
         if(enemy.transform.localScale.x == 1){
@@ -110,6 +144,19 @@ public class PlayerScript : MonoBehaviour
             Dead();
         }
     }
+    public void Heal(GameObject bottle){
+        FindObjectOfType<AudioManager>().Play("Heal");
+        if(bottle.CompareTag("HPBottle")){
+            Hp += 20;
+            if(Hp > 100) Hp = 100;
+            playerinfohandler.IncreaseHP(20);
+        }
+        if(bottle.CompareTag("ManaBottle")){
+            Mana += 30;
+            if(Mana > 100) Mana = 100;
+            playerinfohandler.IncreaseMana(30);
+        }
+    }
     IEnumerator Reset(){
         yield return new WaitForSeconds(1f);
         playerRigid.velocity = Vector2.zero;
@@ -120,6 +167,7 @@ public class PlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             KeyCount++;
             playerinfohandler.AddKey();
+            FindObjectOfType<AudioManager>().Play("GetKey");
         }      
     }
     void OnCollisionEnter2D(Collision2D other) {
@@ -134,23 +182,7 @@ public class PlayerScript : MonoBehaviour
             } else if (other.transform.localScale.x == -1){
                 playerRigid.AddForce(new Vector2(-1,1) * _hitForce, ForceMode2D.Impulse);
             }
-            
-            //Decrease HP
         }
-        ////
-        //Collect Keys
-        
-
-        ////
-        // if(istransformed){
-        //     if(other.gameObject.CompareTag("Enemy")){
-        //         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.collider, true);
-        //         Debug.Log("Collision Ignored: " + Physics2D.GetIgnoreCollision(GetComponent<Collider2D>(), other.collider));
-        //     }
-        // } else{
-        //     Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.collider, false);
-        //     Debug.Log("Collision Ignored: " + Physics2D.GetIgnoreCollision(GetComponent<Collider2D>(), other.collider));
-        // }
         
     }
     private void IgnoreEnemy(){

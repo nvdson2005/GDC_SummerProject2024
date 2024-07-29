@@ -9,6 +9,9 @@ TagManager:
   - Traps
   - Key
   - Door
+  - HPBottle
+  - ManaBottle
+  - TrapsNotDead
   layers:
   - Default
   - TransparentFX

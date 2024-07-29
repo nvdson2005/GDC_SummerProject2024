@@ -12,6 +12,7 @@ public class PlayerInfoHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this);
         KeyCountText.text = "0";
         HPText.text = "100";
         HPBar.value = 100;
@@ -30,6 +31,16 @@ public class PlayerInfoHandler : MonoBehaviour
     }
     public void UpdateManaWhenUseSkill(int Mana){
         ManaBar.value -= Mana;
+        ManaText.text = ManaBar.value.ToString();
+    }
+    public void IncreaseHP(int HP){
+        HPBar.value += HP;
+        if(HPBar.value > 100) HPBar.value = 100;
+        HPText.text = HPBar.value.ToString();
+    }
+    public void IncreaseMana(int mana){
+        ManaBar.value += mana;
+        if(ManaBar.value > 100) ManaBar.value = 100;
         ManaText.text = ManaBar.value.ToString();
     }
     public int getHp(){

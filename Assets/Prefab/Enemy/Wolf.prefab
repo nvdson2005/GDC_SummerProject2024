@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpforce: 8.51
-  player: {fileID: 0}
   _atkregrange: 7.8
   _groundcheckdis: 0.5
   _movespeed: 3.5
@@ -212,7 +211,7 @@ GameObject:
   - component: {fileID: 9066512245407682519}
   - component: {fileID: 912427182444988679}
   - component: {fileID: 1970737836027059948}
-  - component: {fileID: 1514484845507557159}
+  - component: {fileID: 5613689452847065147}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -297,7 +296,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1514484845507557159
+--- !u!114 &5613689452847065147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,7 +305,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4179762826100097621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b436a8c2dd39b6948908cff342f05fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 543e57813b6b2db4f901082007942339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 479588818168859097}

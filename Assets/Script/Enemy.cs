@@ -16,12 +16,13 @@ public class Enemy : MonoBehaviour
     private RaycastHit2D ray;
     //private Collider2D childcollider;
     [SerializeField] private float regRange;
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] GameObject Atkpoint;
     [SerializeField] float atkrange;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         //Initialization for weapon collider
         WeaponCollider = GetComponentInChildren<CircleCollider2D>();
         WeaponCollider.enabled = false;
@@ -58,7 +59,7 @@ public class Enemy : MonoBehaviour
         }
         bool res = false;
         if(ray.collider != null){
-            if(ray.collider.gameObject.CompareTag("Player")){
+            if(ray.collider.gameObject.CompareTag("Player") || !ray.collider.gameObject.CompareTag("FakeBag")){
                 res = true;
                 //Debug.Log("Enemy can see player");
             }

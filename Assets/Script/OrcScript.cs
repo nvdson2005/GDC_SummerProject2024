@@ -25,7 +25,7 @@ public class OrcScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, player.transform.position) < 2.25f && player.CompareTag("Player")){
+        if(Vector2.Distance(transform.position, player.transform.position) < 2.25f && (player.CompareTag("Player") || !player.CompareTag("FakeContainer"))){
             _anim.SetTrigger("Attack");
             DetectWhereToLook();
             Invoke("MakingHit", 0.5f);

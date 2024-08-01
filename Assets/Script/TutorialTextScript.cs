@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TutorialTextScript : MonoBehaviour
 {
-    [SerializeField] GameObject playerr;
+    GameObject playerr;
     float Counter;
     [SerializeField] float MaxCount;
     [SerializeField] Text WelcomeText;
@@ -14,6 +14,7 @@ public class TutorialTextScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerr = GameObject.FindGameObjectWithTag("Player");
         Counter = 0;
         WelcomeText.color = new Color(1, 1, 1, 0);
         WelcomeText.text = "Welcome!";

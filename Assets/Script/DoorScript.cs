@@ -5,7 +5,8 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     AudioManager audiomanager;
-    [SerializeField] GameObject playerr, levelloader;
+    [SerializeField] GameObject playerr;
+    [SerializeField] GameObject levelloader;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class DoorScript : MonoBehaviour
     {
         if(Vector2.Distance(playerr.transform.position, transform.position) < 1.5f && Input.GetKeyDown(KeyCode.F) && playerr.GetComponent<PlayerScript>().KeyCount > 0){
             StartCoroutine(PlayDoorSound());
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("door1");
             Debug.Log("The door is opened!");
             playerr.GetComponent<PlayerScript>().playerinfohandler.DeleteKey();
             //Load Scene or Moving Camera

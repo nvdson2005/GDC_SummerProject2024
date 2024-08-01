@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -23,9 +24,16 @@ public class PlayerScript : MonoBehaviour
     bool isGrounded;
     bool istransformed;
     SpriteRenderer spriteRenderer;
+    //
+    string nameofobjectbeselected;
+    string tagofobjectselected;
+    //
+    public GameObject selection;
+    bool openSelection;
     // Start is called before the first frame update
     void Start()
     {
+        openSelection = false;
         startpoint = GameObject.Find("PlayerStartPoint");
         transform.position = startpoint.transform.position;
         playerinfohandler = FindObjectOfType<PlayerInfoHandler>().GetComponent<PlayerInfoHandler>();
@@ -62,22 +70,28 @@ public class PlayerScript : MonoBehaviour
             isGrounded = false;
             FindObjectOfType<AudioManager>().Play("Jump");
         }
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(Input.GetKeyDown(KeyCode.Q) && nameofobjectbeselected != null){
             FindObjectOfType<AudioManager>().Play("Transform");
-            Debug.Log(" Q Pressed in Player");
+            //Debug.Log(" Q Pressed in Player" + nameofobjectbeselected);
             anim.enabled = false;
-            spriteRenderer.sprite = Resources.Load<Sprite>("crate_1");
+            spriteRenderer.sprite = Resources.Load<Sprite>(nameofobjectbeselected);
             istransformed = true;
-            this.gameObject.tag = "FakeChest";
+            this.gameObject.tag = tagofobjectselected;
+            playerinfohandler.LoadSkillImage();
+            IgnoreEnemy();
+        } else if (nameofobjectbeselected == null && Input.GetKeyDown(KeyCode.Q)){
+            Debug.LogWarning("No object selected for player's skill");
         }
         //Reduce mana when using skill
         if(istransformed){
-            IgnoreEnemy();
+            
             time += Time.deltaTime;
             //Debug.Log(time);
             if(time >= 1){
-                Mana -= 4;
-                playerinfohandler.UpdateManaWhenUseSkill(4);
+                float tmp = UnityEngine.Random.Range(0f, 0.05f);
+                int subtrahend = 4 + (int) Mathf.Lerp(0, Mana, tmp) + (int) UnityEngine.Random.Range(0f, 4f); 
+                Mana -= subtrahend;
+                playerinfohandler.UpdateManaWhenUseSkill(subtrahend);
                 time = 0;
             }
             if(Mana <= 0 || (Input.GetKeyDown(KeyCode.E) && istransformed)){
@@ -87,17 +101,55 @@ public class PlayerScript : MonoBehaviour
                 anim.enabled = true;
                 Resources.UnloadAsset(spriteRenderer.sprite);
                 this.gameObject.tag = "Player";
+                playerinfohandler.LoadSkillImage(nameofobjectbeselected);
                 StopIgnoreEnemy();
             }
         }
-        if(Input.GetKeyDown(KeyCode.R)){
+        if(Input.GetKeyDown(KeyCode.R) && !openSelection){
+            FindObjectOfType<AudioManager>().Play("OpenAndCloseObjectSelection");
             SelectTransformObject();
+            openSelection = true;
+        } else if (Input.GetKeyDown(KeyCode.R) && openSelection){
+            FindObjectOfType<AudioManager>().Play("OpenAndCloseObjectSelection");
+            DestroySelection();
+            openSelection = false;
         }
     }
     void SelectTransformObject(){
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("FakeChest");
+        GameObject[] gameObjects1 = GameObject.FindGameObjectsWithTag("FakeChest");
+        GameObject[] gameObjects2 = GameObject.FindGameObjectsWithTag("FakeBag");
+        GameObject[] gameObjects3 = GameObject.FindGameObjectsWithTag("FakeContainer");
+        GameObject[] gameObjects = gameObjects1.Concat(gameObjects2).Concat(gameObjects3).ToArray();
+        //gameObjects.Append<GameObject>(GameObject.FindGameObjectsWithTag("Chest"));
         foreach(GameObject game in gameObjects){
-            Debug.Log(game.name);
+            if(game.name == "Player") continue;
+            Instantiate(selection, new Vector3(game.transform.position.x, game.transform.position.y + 0.5f, 0), Quaternion.identity, game.transform);
+            
+        }
+    }
+    void DestroySelection(){
+        //Set the thing to transform into
+        GameObject[] gameObjects1 = GameObject.FindGameObjectsWithTag("FakeChest");
+        GameObject[] gameObjects2 = GameObject.FindGameObjectsWithTag("FakeBag");
+        GameObject[] gameObjects3 = GameObject.FindGameObjectsWithTag("FakeContainer");
+        GameObject[] gameObjects = gameObjects1.Concat(gameObjects2).Concat(gameObjects3).ToArray();
+        GameObject tmp = null;
+        foreach(GameObject game in gameObjects){
+            Collider2D coll = Physics2D.OverlapBox(game.transform.position, new Vector2(1, 1), 0, 1 << LayerMask.NameToLayer("Player"));
+            if(coll != null){
+                tmp = game;
+            }
+        }
+        if(tmp != null){
+            nameofobjectbeselected = tmp.GetComponent<SpriteRenderer>().sprite.name;
+            playerinfohandler.LoadSkillImage(nameofobjectbeselected);
+            tagofobjectselected = tmp.tag;
+            //playerinfohandler.SkillImage.sprite = Resources.Load<Sprite>(nameofobjectbeselected);
+        }
+        //Destroy the selection objects
+        GameObject[] gameObjectss = GameObject.FindGameObjectsWithTag("Selection");
+        foreach(GameObject game in gameObjectss){
+            Destroy(game);
         }
     }
     //Play Walk Sound Effect (In Animation Event)
@@ -185,10 +237,12 @@ public class PlayerScript : MonoBehaviour
         }
         
     }
-    private void IgnoreEnemy(){
+    public void IgnoreEnemy(){
+        Debug.Log("Ignore is called");
         Physics2D.IgnoreLayerCollision(7,8, true);
     }
-    private void StopIgnoreEnemy(){
+    public void StopIgnoreEnemy(){
+        Debug.Log("StopIgnore is called");
         Physics2D.IgnoreLayerCollision(7,8, false);
     }
     private void Dead(){

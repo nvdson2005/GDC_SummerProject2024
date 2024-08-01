@@ -12,6 +12,9 @@ TagManager:
   - HPBottle
   - ManaBottle
   - TrapsNotDead
+  - FakeBag
+  - FakeContainer
+  - Selection
   layers:
   - Default
   - TransparentFX

@@ -8,17 +8,18 @@ public class WolfScript : MonoBehaviour
     [SerializeField] float _jumpforce;
     
     CircleCollider2D WeaponCollider;
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] float _atkregrange;
     Animator _anim;
     [SerializeField] float _groundcheckdis;
     [SerializeField] float _movespeed;
     [SerializeField] GameObject _groundcheck;
     Rigidbody2D _rigid;
-    string _direction;
+    //string _direction;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         WeaponCollider = GetComponentInChildren<CircleCollider2D>();
         _anim = GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
@@ -30,7 +31,7 @@ public class WolfScript : MonoBehaviour
     {
         if(SeePlayer()){
             _anim.SetBool("isPatrol",false);
-            Debug.Log("Can see player");
+//            Debug.Log("Can see player");
             Attack();
         } else{
             _anim.SetBool("Chase", false);
@@ -79,27 +80,27 @@ public class WolfScript : MonoBehaviour
         RaycastHit2D raytopright = Physics2D.Raycast(raypos, new Vector2(1, Mathf.Sin(15 * Mathf.Deg2Rad)), _atkregrange,1 << LayerMask.NameToLayer("Player"));
         RaycastHit2D raytopleft = Physics2D.Raycast(raypos, new Vector2(-1, Mathf.Sin(15 * Mathf.Deg2Rad)),_atkregrange, 1 << LayerMask.NameToLayer("Player"));
         if(rayleft.collider != null){
-            if(rayleft.collider.gameObject.CompareTag("Player")){
+            if(rayleft.collider.gameObject.CompareTag("Player") || !rayleft.collider.gameObject.CompareTag("FakeChest")){
                 val = true;
-                _direction = "left";
+                //_direction = "left";
             }
         }
         if(rayright.collider != null){
-            if(rayright.collider.gameObject.CompareTag("Player")){
+            if(rayright.collider.gameObject.CompareTag("Player") || !rayright.collider.gameObject.CompareTag("FakeChest")){
                 val = true;
-                _direction = "right";
+                //_direction = "right";
             }
         }
         if(raytopright.collider != null){
-            if(raytopright.collider.gameObject.CompareTag("Player")){
+            if(raytopright.collider.gameObject.CompareTag("Player") || !raytopright.collider.gameObject.CompareTag("FakeChest")){
                 val = true;
-                _direction = "topright";
+               // _direction = "topright";
             }
         }
         if(raytopleft.collider != null){
-            if(raytopleft.collider.gameObject.CompareTag("Player")){
+            if(raytopleft.collider.gameObject.CompareTag("Player") || !raytopleft.collider.gameObject.CompareTag("FakeChest")){
                 val = true;
-                _direction = "topleft";
+               // _direction = "topleft";
             }
         }
         // RaycastHit2D detector = Physics2D.CircleCast(transform.position, _atkregrange, Vector2.zero, 0);

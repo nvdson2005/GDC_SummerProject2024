@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(Playbgsound());
     }
     IEnumerator Playbgsound(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Play("BackgroundSound");
     }
     // Update is called once per frame

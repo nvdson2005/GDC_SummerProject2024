@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6972980185680160893}
   - component: {fileID: 8185665873726963737}
   - component: {fileID: 6992111377123389606}
-  - component: {fileID: 3521323462404355521}
+  - component: {fileID: 4710444174488180010}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Enemy
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3521323462404355521
+--- !u!114 &4710444174488180010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 966869184271499839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b436a8c2dd39b6948908cff342f05fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c1cbcab1ce411e43a75011ef367c225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2801160543218519657}
@@ -265,7 +265,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   regRange: 5
-  player: {fileID: 0}
   Atkpoint: {fileID: 966869184271499839}
   atkrange: 0.43
 --- !u!70 &2193184430080003552

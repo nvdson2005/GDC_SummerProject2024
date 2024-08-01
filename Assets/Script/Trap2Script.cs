@@ -27,6 +27,7 @@ public class Trap2Script : MonoBehaviour
         if(player && hitplayer.collider != null){
             DetectFalling();
         }
+        if(rigid.velocity.y ==0) FirstTime = true;
     }
     void DetectFalling(){
         if(Mathf.Abs(player.transform.position.x - transform.position.x) < 0.5f){
@@ -39,7 +40,7 @@ public class Trap2Script : MonoBehaviour
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(this.gameObject);
             //coll.enabled = false;
             FirstTime = true;
-            rigid.bodyType = RigidbodyType2D.Static;
+            
         }
     }
     void OnDrawGizmos(){

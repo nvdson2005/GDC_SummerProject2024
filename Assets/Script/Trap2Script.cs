@@ -17,30 +17,30 @@ public class Trap2Script : MonoBehaviour
         FirstTime = false;
         rigid = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         hitplayer = Physics2D.Raycast(transform.position, Vector2.down, dis, 1 << LayerMask.NameToLayer("Player"));
         if(player && hitplayer.collider != null){
             DetectFalling();
         }
-        if(rigid.velocity.y ==0) FirstTime = true;
     }
     void DetectFalling(){
         if(Mathf.Abs(player.transform.position.x - transform.position.x) < 0.5f){
             rigid.bodyType = RigidbodyType2D.Dynamic;
+            rigid.mass = 1000000;
             coll.enabled = true;
         }
     }
-    void OnCollisionEnter2D(Collision2D other){
-        if(!FirstTime&&(other.gameObject.tag == "Player" || other.gameObject.tag == "FakeChest")){
+    void OnTriggerEnter2D(Collider2D other){
+        if(!FirstTime && (other.gameObject.layer == 7)){
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(this.gameObject);
             //coll.enabled = false;
             FirstTime = true;
-            
         }
     }
     void OnDrawGizmos(){

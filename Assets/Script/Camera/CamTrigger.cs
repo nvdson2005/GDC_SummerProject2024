@@ -33,6 +33,13 @@ public class CamTrigger : MonoBehaviour
             playerr.transform.position = NewPlayerPos;
             FirstTime = true;
             camcontroller.IncreaseCameraSize();
+            FindAnyObjectByType<AudioManager>().Play("OpenDoor");
+            StartCoroutine(CloseDoorSound());
+            playerr.GetComponent<PlayerScript>().playerinfohandler.DeleteKey();
         }
+    }
+    IEnumerator CloseDoorSound(){
+        yield return new WaitForSeconds(0.5f);
+        FindAnyObjectByType<AudioManager>().Play("CloseDoor");
     }
 }

@@ -63,7 +63,7 @@ public class WolfScript : MonoBehaviour
         else if(transform.localScale.x == -1)castdist = -_groundcheckdis;
         Vector3 endgroundcheckpos = _groundcheck.transform.position;
         endgroundcheckpos.x += castdist;
-        if(Physics2D.Linecast(_groundcheck.transform.position, endgroundcheckpos, 1 << LayerMask.NameToLayer("Wall and Ground"))){
+        if(Physics2D.Linecast(_groundcheck.transform.position, endgroundcheckpos, 1 << LayerMask.NameToLayer("Wall and Ground"))|| Physics2D.Linecast(_groundcheck.transform.position, endgroundcheckpos, 1 << LayerMask.NameToLayer("Trap"))){
             val = true;
         }
         return val;

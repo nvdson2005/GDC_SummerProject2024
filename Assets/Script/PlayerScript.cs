@@ -6,9 +6,10 @@ using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
+    [SerializeField] float PlayerScale;
     GameObject startpoint;
     [HideInInspector]
     public PlayerInfoHandler playerinfohandler;
@@ -54,12 +55,12 @@ public class PlayerScript : MonoBehaviour
         //Movement
         if(Input.GetKey(KeyCode.A)){
             anim.SetBool("isRun", true);
-            this.transform.localScale = new Vector3(-1, 1, 1);
+            this.transform.localScale = new Vector2(-PlayerScale, PlayerScale);
             transform.Translate(Vector3.left * _runforce * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.D)){
             anim.SetBool("isRun", true);
-            this.transform.localScale = new Vector3(1,1,1);
+            this.transform.localScale = new Vector2(PlayerScale, PlayerScale);
             transform.Translate(Vector3.right * _runforce * Time.deltaTime);
         } else{
             anim.SetBool("isRun", false);
@@ -88,8 +89,8 @@ public class PlayerScript : MonoBehaviour
             time += Time.deltaTime;
             //Debug.Log(time);
             if(time >= 1){
-                float tmp = UnityEngine.Random.Range(0f, 0.05f);
-                int subtrahend = 4 + (int) Mathf.Lerp(0, Mana, tmp) + (int) UnityEngine.Random.Range(0f, 4f); 
+                float tmp = UnityEngine.Random.Range(0f, 0.1f);
+                int subtrahend = 4 + (int) Mathf.Lerp(0, Mana, tmp) + (int) UnityEngine.Random.Range(0f, 6f); 
                 Mana -= subtrahend;
                 playerinfohandler.UpdateManaWhenUseSkill(subtrahend);
                 time = 0;
@@ -196,6 +197,20 @@ public class PlayerScript : MonoBehaviour
             Dead();
         }
     }
+    public void TakeDamage(int dmg, GameObject enemy){
+        FindObjectOfType<AudioManager>().Play("Hurt");
+        Hp -= dmg;
+        playerinfohandler.UpdateHPWhenHit(dmg);
+        if(transform.position.x > enemy.transform.position.x){
+                playerRigid.velocity = new Vector2 (_hitForce, _hitForce);
+            } else if (transform.position.x <= enemy.transform.position.x){
+                playerRigid.velocity = new Vector2 (-_hitForce, _hitForce);
+            }
+        StartCoroutine(Reset());
+        if(Hp <= 0){
+            Dead();
+        }
+    }
     public void Heal(GameObject bottle){
         FindObjectOfType<AudioManager>().Play("Heal");
         if(bottle.CompareTag("HPBottle")){
@@ -223,7 +238,7 @@ public class PlayerScript : MonoBehaviour
         }      
     }
     void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.layer == 6){
+        if(other.gameObject.layer == 6 || other.gameObject.layer == 9){
             isGrounded = true;
             anim.SetBool("isJump", false);
         }
@@ -250,5 +265,9 @@ public class PlayerScript : MonoBehaviour
         anim.SetTrigger("isDead");
         Debug.Log("Player dies");
         GetComponent<PlayerScript>().enabled = false;
+        Invoke("Endgame", 2f);
+    }
+    public void Endgame(){
+        SceneManager.LoadScene(2);
     }
 }

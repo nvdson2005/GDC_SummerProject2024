@@ -83,7 +83,7 @@ public class Arc1TutorialTextScript : MonoBehaviour
         Counter++;
     }
     void finalfortutorialtext(){
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
         StartCoroutine(DisappearText(text));
         ShowText(text);
         StartCoroutine(AppearText(text));

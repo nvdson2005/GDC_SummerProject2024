@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerInfoHandler : MonoBehaviour
 {
     [SerializeField] Text KeyCountText;
-    public Image SkillImage;
+    public Image[] skillimages;
     [SerializeField] Slider HPBar, ManaBar;
     [SerializeField] TMP_Text HPText, ManaText;
     // Start is called before the first frame update
@@ -19,7 +19,9 @@ public class PlayerInfoHandler : MonoBehaviour
         HPBar.value = 100;
         ManaBar.value = 100;
         ManaText.text = "100";
-        SkillImage.sprite = Resources.Load<Sprite>("firstskillicon");
+        for(int i=1; i<=3; i++){
+            skillimages[i].GetComponent<Image>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -57,9 +59,22 @@ public class PlayerInfoHandler : MonoBehaviour
     public void DeleteKey(){
         if(int.Parse(KeyCountText.text) > 0) KeyCountText.text = (int.Parse(KeyCountText.text) - 1).ToString();
     }
-    public void LoadSkillImage(string skilliconname = "face_normal"){
-        Resources.UnloadAsset(SkillImage.sprite);
-        SkillImage.sprite = Resources.Load<Sprite>(skilliconname);
+    public void LoadSkillImage(string tag){
+        tag += "Image";
+        Debug.Log(tag);
+        foreach(Image image in skillimages){
+            if(image.gameObject.name == tag){
+                image.GetComponent<Image>().enabled = true;
+            } else {
+                image.GetComponent<Image>().enabled = false;
+            }
+        }
+    }
+    public void LoadPlayerImageInSkillIcon(){
+        for(int i=0; i<=3; i++){
+            skillimages[i].GetComponent<Image>().enabled = false;
+        }
+        skillimages[4].GetComponent<Image>().enabled = true;
     }
     //two more functions to increase hp and mana
 }

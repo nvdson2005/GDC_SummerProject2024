@@ -20,7 +20,7 @@ public class DoorScript : MonoBehaviour
             StartCoroutine(PlayDoorSound());
             GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("door1");
             Debug.Log("The door is opened!");
-            playerr.GetComponent<PlayerScript>().playerinfohandler.DeleteKey();
+            playerr.GetComponent<PlayerScript>().DeleteKey();
             //Load Scene or Moving Camera
             levelloader.GetComponent<LevelLoader>().LoadNextLevel();
         }

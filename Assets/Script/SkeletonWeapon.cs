@@ -22,10 +22,10 @@ public class SkeletonWeapon : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D other){
-        playerr.GetComponent<PlayerScript>().StopIgnoreEnemy();
+        playerr.gameObject.GetComponent<PlayerScript>().StopIgnoreEnemy();
         if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
-        } else if(other.gameObject.CompareTag("FakeContainer") || other.gameObject.CompareTag("FakeChest")){
+        } else if(other.gameObject.CompareTag("FakeContainer")){
                 other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
                 playerr.GetComponent<PlayerScript>().IgnoreEnemy();
             }

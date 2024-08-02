@@ -29,6 +29,6 @@ playerr.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, force), ForceMode2D.
         } 
     }
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 7){anim.SetTrigger("jump");;isplayeroverjumper = true;}
+        if(other.gameObject.layer == 7){anim.SetTrigger("jump");other.gameObject.GetComponent<PlayerScript>().SetIsGrounded(false);isplayeroverjumper = true;}
     }
 }

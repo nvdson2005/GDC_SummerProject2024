@@ -28,6 +28,7 @@ public class CamTrigger : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F) &&Vector2.Distance(playerr.transform.position, transform.position) < 1.5f && !FirstTime && playerr.GetComponent<PlayerScript>().KeyCount > 0){
+            playerr.GetComponent<PlayerScript>().DeleteKey();
             camcontroller.MinPos += NewCamPos;
             camcontroller.MaxPos += NewCamPos;
             playerr.transform.position = NewPlayerPos;
@@ -35,7 +36,7 @@ public class CamTrigger : MonoBehaviour
             camcontroller.IncreaseCameraSize();
             FindAnyObjectByType<AudioManager>().Play("OpenDoor");
             StartCoroutine(CloseDoorSound());
-            playerr.GetComponent<PlayerScript>().playerinfohandler.DeleteKey();
+            
         }
     }
     IEnumerator CloseDoorSound(){

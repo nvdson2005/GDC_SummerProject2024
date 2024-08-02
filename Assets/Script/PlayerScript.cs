@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
+    float tmpplayerlocalscale;
     [SerializeField] float PlayerScale;
     GameObject startpoint;
     [HideInInspector]
@@ -34,6 +33,9 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tmpplayerlocalscale = PlayerScale; //tmpplayerlocalscale is used to keep the value of PlayerScale. When transform, 
+        //the value of PlayerScale will be changed (to 1) so that the size of the object is the same as the original object (because)
+        //player's PlayerScale is not 1 (0.9 now). After transforming the object, PlayerScale will be set back to 0.9 by tmpplayerlocalscale.
         openSelection = false;
         startpoint = GameObject.Find("PlayerStartPoint");
         transform.position = startpoint.transform.position;
@@ -72,20 +74,27 @@ public class PlayerScript : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Jump");
         }
         if(Input.GetKeyDown(KeyCode.Q) && nameofobjectbeselected != null){
+            IgnoreEnemy();
             FindObjectOfType<AudioManager>().Play("Transform");
-            //Debug.Log(" Q Pressed in Player" + nameofobjectbeselected);
-            anim.enabled = false;
-            spriteRenderer.sprite = Resources.Load<Sprite>(nameofobjectbeselected);
+            
             istransformed = true;
             this.gameObject.tag = tagofobjectselected;
-            playerinfohandler.LoadSkillImage();
-            IgnoreEnemy();
+            if(tagofobjectselected == "FakeChest"){
+                anim.SetBool("isFakeChest", true);
+            } else if(tagofobjectselected == "FakeBag"){
+                anim.SetBool("isFakeBag", true);
+            } else if(tagofobjectselected == "FakeContainer"){
+                anim.SetBool("isFakeContainer", true);
+            }
+            PlayerScale = 1f;
+            transform.localScale = new Vector2(PlayerScale,PlayerScale);
+            
         } else if (nameofobjectbeselected == null && Input.GetKeyDown(KeyCode.Q)){
             Debug.LogWarning("No object selected for player's skill");
         }
         //Reduce mana when using skill
         if(istransformed){
-            
+            playerinfohandler.LoadPlayerImageInSkillIcon();
             time += Time.deltaTime;
             //Debug.Log(time);
             if(time >= 1){
@@ -96,14 +105,23 @@ public class PlayerScript : MonoBehaviour
                 time = 0;
             }
             if(Mana <= 0 || (Input.GetKeyDown(KeyCode.E) && istransformed)){
+                StopIgnoreEnemy();
                 FindObjectOfType<AudioManager>().Play("Transform");
                 istransformed = false;
                 time = 0;
-                anim.enabled = true;
-                Resources.UnloadAsset(spriteRenderer.sprite);
+                //anim.enabled = true;
+                if(tagofobjectselected == "FakeChest"){
+                anim.SetBool("isFakeChest", false);
+            } else if(tagofobjectselected == "FakeBag"){
+                anim.SetBool("isFakeBag", false);
+            } else if(tagofobjectselected == "FakeContainer"){
+                anim.SetBool("isFakeContainer", false);
+            }
+            PlayerScale = tmpplayerlocalscale;
+            transform.localScale = new Vector2(PlayerScale,PlayerScale);
                 this.gameObject.tag = "Player";
-                playerinfohandler.LoadSkillImage(nameofobjectbeselected);
-                StopIgnoreEnemy();
+                playerinfohandler.LoadSkillImage(tagofobjectselected);
+                
             }
         }
         if(Input.GetKeyDown(KeyCode.R) && !openSelection){
@@ -143,9 +161,8 @@ public class PlayerScript : MonoBehaviour
         }
         if(tmp != null){
             nameofobjectbeselected = tmp.GetComponent<SpriteRenderer>().sprite.name;
-            playerinfohandler.LoadSkillImage(nameofobjectbeselected);
             tagofobjectselected = tmp.tag;
-            //playerinfohandler.SkillImage.sprite = Resources.Load<Sprite>(nameofobjectbeselected);
+            playerinfohandler.LoadSkillImage(tagofobjectselected);
         }
         //Destroy the selection objects
         GameObject[] gameObjectss = GameObject.FindGameObjectsWithTag("Selection");
@@ -258,7 +275,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void StopIgnoreEnemy(){
         Debug.Log("StopIgnore is called");
-        Physics2D.IgnoreLayerCollision(7,8, false);
+        Physics2D.IgnoreLayerCollision(7,8, true);
     }
     private void Dead(){
         if(anim.enabled == false) anim.enabled = true;
@@ -269,5 +286,14 @@ public class PlayerScript : MonoBehaviour
     }
     public void Endgame(){
         SceneManager.LoadScene(2);
+    }
+    public void DeleteKey(){
+        if(KeyCount > 0){
+            KeyCount--;
+            playerinfohandler.DeleteKey();
+        }
+    }
+    public void SetIsGrounded(bool value){
+        isGrounded = value;
     }
 }

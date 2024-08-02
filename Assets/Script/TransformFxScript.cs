@@ -20,7 +20,7 @@ public class TransformFxScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q) && !istransformed){
             vpanim.SetBool("BienHinh", true);
-            Debug.Log("Q Pressed in TransformFx");
+//            Debug.Log("Q Pressed in TransformFx");
             istransformed = true;
         }
         else vpanim.SetBool("BienHinh",false);

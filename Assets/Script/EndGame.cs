@@ -16,6 +16,11 @@ public class EndGame : MonoBehaviour
         SceneManager.LoadScene(2);
     }
     void OnCollisionEnter2D(Collision2D other){
-        Endgame();
+        if(other.gameObject.layer == 7){
+            if(other.gameObject.GetComponent<PlayerScript>().KeyCount > 0){
+                other.gameObject.GetComponent<PlayerScript>().DeleteKey();
+                Endgame();
+            }
+        }
     }
 }

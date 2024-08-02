@@ -28,7 +28,4 @@ public class WolfWeapon : MonoBehaviour
                 playerr.GetComponent<PlayerScript>().IgnoreEnemy();
             }
     }
-    void ReIgnore(){
-        playerr.GetComponent<PlayerScript>().IgnoreEnemy();
-    }
 }

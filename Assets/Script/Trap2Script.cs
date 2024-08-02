@@ -32,6 +32,7 @@ public class Trap2Script : MonoBehaviour
         if(Mathf.Abs(player.transform.position.x - transform.position.x) < 0.5f){
             rigid.bodyType = RigidbodyType2D.Dynamic;
             rigid.mass = 1000000;
+            rigid.gravityScale = 4.5f;
             coll.enabled = true;
         }
     }

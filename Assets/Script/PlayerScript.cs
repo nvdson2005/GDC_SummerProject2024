@@ -275,7 +275,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void StopIgnoreEnemy(){
         Debug.Log("StopIgnore is called");
-        Physics2D.IgnoreLayerCollision(7,8, true);
+        Physics2D.IgnoreLayerCollision(7,8, false);
     }
     private void Dead(){
         if(anim.enabled == false) anim.enabled = true;

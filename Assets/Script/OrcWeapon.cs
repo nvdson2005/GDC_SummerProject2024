@@ -21,11 +21,10 @@ public class OrcWeapon : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D other){
+        playerr.GetComponent<PlayerScript>().StopIgnoreEnemy();
         if(other.gameObject.CompareTag("Player")){
-            playerr.GetComponent<PlayerScript>().StopIgnoreEnemy();
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
         } else if(other.gameObject.CompareTag("FakeBag") || other.gameObject.CompareTag("FakeChest")){
-                playerr.GetComponent<PlayerScript>().StopIgnoreEnemy();
                 other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
                 playerr.GetComponent<PlayerScript>().IgnoreEnemy();
             }

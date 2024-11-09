@@ -24,7 +24,7 @@ public class OrcWeapon : MonoBehaviour
         playerr.GetComponent<PlayerScript>().StopIgnoreEnemy();
         if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
-        } else if(other.gameObject.CompareTag("FakeBag") || other.gameObject.CompareTag("FakeChest")){
+        } else if(!other.gameObject.CompareTag("FakeContainer")){
                 other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
                 playerr.GetComponent<PlayerScript>().IgnoreEnemy();
             }

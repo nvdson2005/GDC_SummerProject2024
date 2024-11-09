@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         }
         bool res = false;
         if(ray.collider != null){
-            if(ray.collider.gameObject.CompareTag("Player") || !ray.collider.gameObject.CompareTag("FakeBag")){
+            if(ray.collider.gameObject.CompareTag("Player") || !ray.collider.gameObject.CompareTag("FakeBones")){
                 res = true;
                 //Debug.Log("Enemy can see player");
             }

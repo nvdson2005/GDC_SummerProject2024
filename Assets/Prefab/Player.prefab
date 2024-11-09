@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e0c9da1b5b46942815f9a9640f5606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCharacterLight: {fileID: 5963460321426745754}
   PlayerScale: 0.9
   playerinfohandler: {fileID: 0}
   Hp: 100

@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class CountDown : MonoBehaviour
 {
-    [SerializeField] Text textforskillbutton;
     UnityEngine.UI.Image image;
     Text text;
     float countdown;
@@ -21,7 +20,6 @@ public class CountDown : MonoBehaviour
         text.enabled = false;
         image.fillAmount = 1f;
         countdown = 1f;
-        textforskillbutton.text = "Q";
     }
 
     // Update is called once per frame
@@ -31,12 +29,10 @@ public class CountDown : MonoBehaviour
             image.enabled = true;
             text.enabled = true;
             isusingskill = true;
-            textforskillbutton.text = "E";
-        } else if(Input.GetKeyDown(KeyCode.E) && isusingskill){
+        } else if(Input.GetKeyDown(KeyCode.Q) && isusingskill){
             image.enabled = true;
             text.enabled = true;
             isusingskill = false;
-            textforskillbutton.text = "Q";
         }
         if(image.enabled == true && text.enabled == true){
                 float tmp = Mathf.Round(countdown*10.0f)*0.1f;

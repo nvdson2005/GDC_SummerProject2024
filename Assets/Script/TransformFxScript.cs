@@ -18,17 +18,18 @@ public class TransformFxScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && !istransformed){
+        if(!istransformed){
+            if(Input.GetKeyDown(KeyCode.Q) && playerinfohandler.getMana() > 0){
             vpanim.SetBool("BienHinh", true);
-//            Debug.Log("Q Pressed in TransformFx");
             istransformed = true;
-        }
-        else vpanim.SetBool("BienHinh",false);
-        if(istransformed){
-            if(playerinfohandler.getMana() <=0 || Input.GetKeyDown(KeyCode.E)){
+            }
+            else vpanim.SetBool("BienHinh",false);
+        }   
+        else{
+            if(playerinfohandler.getMana() <=0 || Input.GetKeyDown(KeyCode.Q)){
                 istransformed = false;
                 vpanim.SetBool("BienHinh", true);
-            }
+            } else vpanim.SetBool("BienHinh",false);
         }
     }
 }

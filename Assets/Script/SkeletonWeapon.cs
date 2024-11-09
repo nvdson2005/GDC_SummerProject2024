@@ -25,7 +25,7 @@ public class SkeletonWeapon : MonoBehaviour
         playerr.gameObject.GetComponent<PlayerScript>().StopIgnoreEnemy();
         if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
-        } else if(other.gameObject.CompareTag("FakeContainer")){
+        } else if(!other.gameObject.CompareTag("FakeBones")){
                 other.gameObject.GetComponent<PlayerScript>().TakeDamage(parent);
                 playerr.GetComponent<PlayerScript>().IgnoreEnemy();
             }

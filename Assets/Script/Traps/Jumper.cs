@@ -21,10 +21,11 @@ public class Jumper : MonoBehaviour
     {
         
     }
-    public void PushUp(){
+    //This is called using Animation Event
+    private void PushUp(){
         
         if(isplayeroverjumper){
-playerr.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, force), ForceMode2D.Impulse);
+            playerr.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, force), ForceMode2D.Impulse);
             isplayeroverjumper = false;
         } 
     }
